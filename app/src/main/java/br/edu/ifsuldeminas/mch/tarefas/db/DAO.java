@@ -3,14 +3,13 @@ package br.edu.ifsuldeminas.mch.tarefas.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-abstract class DAO {
+import java.util.List;
 
-    abstract class <T>{
-
+abstract class DAO<T> {
     private DBHandler dbHandler = null;
 
-    DAO(Context context) {
-        if (dbHandler == null) {
+    DAO(Context context){
+        if (dbHandler == null){
             dbHandler = new DBHandler(context);
         }
     }
@@ -20,12 +19,11 @@ abstract class DAO {
     }
 
     SQLiteDatabase openToRead(){
-        return dbHandler.getWritableDatabase();
+        return dbHandler.getReadableDatabase();
     }
 
     public abstract void save(T entity);
     public abstract void update(T entity);
     public abstract void delete(T entity);
-    public abstract void List<T> listAll();
-
+    public abstract List<T> listAll();
 }
